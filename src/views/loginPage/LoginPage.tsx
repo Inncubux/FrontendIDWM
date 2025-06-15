@@ -21,15 +21,18 @@ import { set, useForm } from "react-hook-form";
 import z from "zod";
 
 const formSchema = z.object({
-  email: z.string().email({
-    message: "Ingrese un correo electrónico válido",})
+  email: z
+    .string()
+    .email({
+      message: "Ingrese un correo electrónico válido",
+    })
     .nonempty({
       message: "El correo electrónico es obligatorio",
     }),
 
-    password: z.string().nonempty({
-      message: "La contraseña es obligatoria",
-    }),
+  password: z.string().nonempty({
+    message: "La contraseña es obligatoria",
+  }),
 });
 
 export const LoginPage = () => {
@@ -46,7 +49,7 @@ export const LoginPage = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       console.log("Valores del formulario:", values);
-      const {data} = await ApiBackend.post<any>("Auth/login", values);
+      const { data } = await ApiBackend.post<any>("Auth/login", values);
       if (data.success === false) {
         console.error("Error en la respuesta del servidor:", data.message);
         setErrors("Error en la respuesta del servidor: ");
@@ -65,7 +68,6 @@ export const LoginPage = () => {
       auth(user_);
       console.log("Usuario autenticado:", user);
       console.log("Respuesta del servidor:", data.data);
-
     } catch (error: any) {
       let errorMessage = error.response.data.message;
       console.error("Error enviando el formulario:", errorMessage);
@@ -125,7 +127,11 @@ export const LoginPage = () => {
                   <FormItem>
                     <FormLabel>Contraseña</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
