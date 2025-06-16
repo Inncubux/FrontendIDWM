@@ -83,7 +83,7 @@ export const LoginPage = () => {
           Bienvenido a <br className="hidden md:block" /> E-Commerce
         </h1>
         <p className="text-lg md:text-xl text-center text-gray-300">
-          de black cat
+          de BLACKCAT
         </p>
       </div>
 
@@ -93,9 +93,6 @@ export const LoginPage = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center md:text-left">
             Iniciar sesión
           </h2>
-          <h3 className="text-lg md:text-xl font-medium mb-2 text-center md:text-left">
-            ¡Bienvenido de nuevo!
-          </h3>
           <p className="mb-4 text-sm text-gray-600 text-center md:text-left">
             ¿No tienes cuenta?{" "}
             <a href="/register" className="text-blue-600 underline">
@@ -140,13 +137,6 @@ export const LoginPage = () => {
               <Button type="submit">Iniciar sesión</Button>
             </form>
           </Form>
-
-          <div className="mt-4 text-sm text-center md:text-left">
-            ¿Olvidaste tu contraseña?{" "}
-            <a href="#" className="text-blue-600 underline">
-              Haz clic aquí
-            </a>
-          </div>
         </div>
       </div>
     </div>

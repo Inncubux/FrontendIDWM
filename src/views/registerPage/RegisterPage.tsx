@@ -127,7 +127,7 @@ export const RegisterPage = () => {
           Regístrate en <br /> E-Commerce
         </h1>
         <p style={{ fontSize: "1.2rem", color: "#ccc", textAlign: "center" }}>
-          de black cat
+          de BLACKCAT
         </p>
       </div>
 
