@@ -6,34 +6,38 @@ Email: axel.mondaca@alumnos.ucn.cl
 
 ## Requisitos
 
-- **Node.js** v18.x o superior (recomendado v18.18.0)
+- **Node.js** v20.x o superior (recomendado v20.11.0)
 - **npm** v9.x o superior
 - Acceso a la API backend en `http://localhost:5000/api`
 
 ## Instalación
 
 1. **Clona el repositorio:**
+
    ```bash
    git clone https://github.com/inncubux/frontendIDWM.git
    cd e-commerce
    ```
 
 2. **Instala las dependencias:**
+
    ```bash
    npm install
    ```
 
 3. **Configura las variables de entorno:**
-   - Crea un archivo `.env.local` en la raíz del proyecto si tu frontend necesita variables (por ejemplo, para la URL base de la API).
+   - Crea un archivo `.env` en la raíz del proyecto si tu frontend necesita variables (por ejemplo, para la URL base de la API).
    - Ejemplo:
+
      ```
-     NEXT_PUBLIC_API_BASE_URL=http://localhost:puerto/api
+     NEXT_PUBLIC_API_URL=http://localhost:puerto/api
      DOMAIN= "LOCALHOST:3000"
 
 
      ```
 
 4. **Ejecuta el proyecto en desarrollo:**
+
    ```bash
    npm run dev
    ```
