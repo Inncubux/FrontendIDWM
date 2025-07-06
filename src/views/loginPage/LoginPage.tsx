@@ -16,6 +16,8 @@ import { AuthContext } from "@/contexts/auth/AuthContext";
 import { ResponseAPI } from "@/interfaces/ResponseAPI";
 import { User } from "@/interfaces/User";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeftIcon } from "lucide-react";
+import router from "next/router";
 import { useContext, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import z from "zod";
@@ -85,6 +87,15 @@ export const LoginPage = () => {
         <p className="text-lg md:text-xl text-center text-gray-300">
           de BLACKCAT
         </p>
+
+        <Button
+          variant="outline"
+          className="mt-4 text-black"
+          onClick={() => router.back()}
+        >
+          <ArrowLeftIcon />
+          Volver
+        </Button>
       </div>
 
       {/* Lado derecho: formulario */}

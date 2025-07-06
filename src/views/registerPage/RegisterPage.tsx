@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeftIcon } from "lucide-react";
+import router from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -93,134 +95,79 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        minHeight: "100vh",
-        minWidth: "900px",
-        width: "100vw",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="flex flex-col md:flex-row h-screen">
       {/* Lado izquierdo: cuadro negro */}
-      <div
-        style={{
-          width: "35%",
-          background: "#111",
-          color: "#fff",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "40px 20px",
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "2.2rem",
-            fontWeight: "bold",
-            marginBottom: 20,
-            textAlign: "center",
-          }}
-        >
-          Regístrate en <br /> E-Commerce
+      <div className="md:w-1/2 w-full bg-black text-white flex flex-col justify-center items-center p-10">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          Regístrate en <br className="hidden md:block" /> E-Commerce
         </h1>
-        <p style={{ fontSize: "1.2rem", color: "#ccc", textAlign: "center" }}>
+        <p className="text-lg md:text-xl text-center text-gray-300">
           de BLACKCAT
         </p>
+        <Button
+          variant="outline"
+          className="mt-4 text-black"
+          onClick={() => router.back()}
+        >
+          <ArrowLeftIcon />
+          Volver
+        </Button>
       </div>
 
       {/* Lado derecho: formulario */}
-      <div
-        style={{
-          width: "65%",
-          background: "#fff",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ width: 420 }}>
-          <h2
-            style={{
-              fontSize: "1.7rem",
-              fontWeight: "bold",
-              marginBottom: 8,
-              textAlign: "center",
-            }}
+      <div className="md:w-1/2 w-full bg-white flex flex-col justify-center items-center p-10">
+        <h2
+          style={{
+            fontSize: "1.7rem",
+            fontWeight: "bold",
+            marginBottom: 8,
+            textAlign: "center",
+          }}
+        >
+          Crear cuenta
+        </h2>
+        <h3
+          style={{
+            fontSize: "1.1rem",
+            fontWeight: 500,
+            marginBottom: 8,
+            textAlign: "center",
+          }}
+        >
+          ¡Únete a nuestra comunidad!
+        </h3>
+        <p
+          style={{
+            marginBottom: 16,
+            fontSize: "0.95rem",
+            color: "#555",
+            textAlign: "center",
+          }}
+        >
+          ¿Ya tienes cuenta?{" "}
+          <a
+            href="/login"
+            style={{ color: "#2563eb", textDecoration: "underline" }}
           >
-            Crear cuenta
-          </h2>
-          <h3
-            style={{
-              fontSize: "1.1rem",
-              fontWeight: 500,
-              marginBottom: 8,
-              textAlign: "center",
-            }}
+            Inicia sesión aquí
+          </a>
+          .
+        </p>
+
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            style={{ display: "flex", flexDirection: "column", gap: 12 }}
           >
-            ¡Únete a nuestra comunidad!
-          </h3>
-          <p
-            style={{
-              marginBottom: 16,
-              fontSize: "0.95rem",
-              color: "#555",
-              textAlign: "center",
-            }}
-          >
-            ¿Ya tienes cuenta?{" "}
-            <a
-              href="/login"
-              style={{ color: "#2563eb", textDecoration: "underline" }}
-            >
-              Inicia sesión aquí
-            </a>
-            .
-          </p>
-
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              style={{ display: "flex", flexDirection: "column", gap: 12 }}
-            >
-              <div style={{ display: "flex", gap: 8 }}>
-                <FormField
-                  control={form.control}
-                  name="firtsName"
-                  render={({ field }) => (
-                    <FormItem style={{ flex: 1 }}>
-                      <FormLabel>Nombre</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Nombre" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="lastName"
-                  render={({ field }) => (
-                    <FormItem style={{ flex: 1 }}>
-                      <FormLabel>Apellido</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Apellido" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+            <div style={{ display: "flex", gap: 8 }}>
               <FormField
                 control={form.control}
-                name="email"
+                name="firtsName"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Correo electrónico</FormLabel>
+                  <FormItem style={{ flex: 1 }}>
+                    <FormLabel>Nombre</FormLabel>
                     <FormControl>
-                      <Input placeholder="correo@example.com" {...field} />
+                      <Input placeholder="Nombre" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -228,142 +175,164 @@ export const RegisterPage = () => {
               />
               <FormField
                 control={form.control}
-                name="thelephone"
+                name="lastName"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Teléfono</FormLabel>
+                  <FormItem style={{ flex: 1 }}>
+                    <FormLabel>Apellido</FormLabel>
                     <FormControl>
-                      <Input placeholder="+569..." {...field} />
+                      <Input placeholder="Apellido" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <div style={{ display: "flex", gap: 8 }}>
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem style={{ flex: 1 }}>
-                      <FormLabel>Contraseña</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="********"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem style={{ flex: 1 }}>
-                      <FormLabel>Confirmar contraseña</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="********"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <FormField
-                control={form.control}
-                name="street"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Calle</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Calle" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div style={{ display: "flex", gap: 8 }}>
-                <FormField
-                  control={form.control}
-                  name="number"
-                  render={({ field }) => (
-                    <FormItem style={{ flex: 1 }}>
-                      <FormLabel>Número</FormLabel>
-                      <FormControl>
-                        <Input placeholder="123" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="postalCode"
-                  render={({ field }) => (
-                    <FormItem style={{ flex: 1 }}>
-                      <FormLabel>Código postal</FormLabel>
-                      <FormControl>
-                        <Input placeholder="1234567" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <FormField
-                control={form.control}
-                name="commune"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Comuna</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Comuna" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Región</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Región" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button type="submit" style={{ width: "100%" }}>
-                Registrarse
-              </Button>
-            </form>
-          </Form>
-
-          {errors && (
-            <div
-              style={{ marginTop: 16, color: "#dc2626", textAlign: "center" }}
-            >
-              {errors}
             </div>
-          )}
-          {success && (
-            <div
-              style={{ marginTop: 16, color: "#16a34a", textAlign: "center" }}
-            >
-              ¡Registro exitoso! Ahora puedes iniciar sesión.
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Correo electrónico</FormLabel>
+                  <FormControl>
+                    <Input placeholder="correo@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="thelephone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Teléfono</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+569..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div style={{ display: "flex", gap: 8 }}>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem style={{ flex: 1 }}>
+                    <FormLabel>Contraseña</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem style={{ flex: 1 }}>
+                    <FormLabel>Confirmar contraseña</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-          )}
-        </div>
+            <FormField
+              control={form.control}
+              name="street"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Calle</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Calle" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div style={{ display: "flex", gap: 8 }}>
+              <FormField
+                control={form.control}
+                name="number"
+                render={({ field }) => (
+                  <FormItem style={{ flex: 1 }}>
+                    <FormLabel>Número</FormLabel>
+                    <FormControl>
+                      <Input placeholder="123" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="postalCode"
+                render={({ field }) => (
+                  <FormItem style={{ flex: 1 }}>
+                    <FormLabel>Código postal</FormLabel>
+                    <FormControl>
+                      <Input placeholder="1234567" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormField
+              control={form.control}
+              name="commune"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Comuna</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Comuna" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="region"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Región</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Región" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit" style={{ width: "100%" }}>
+              Registrarse
+            </Button>
+          </form>
+        </Form>
+
+        {errors && (
+          <div style={{ marginTop: 16, color: "#dc2626", textAlign: "center" }}>
+            {errors}
+          </div>
+        )}
+        {success && (
+          <div style={{ marginTop: 16, color: "#16a34a", textAlign: "center" }}>
+            ¡Registro exitoso! Ahora puedes iniciar sesión.
+          </div>
+        )}
       </div>
     </div>
   );
