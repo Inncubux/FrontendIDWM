@@ -13,10 +13,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeftIcon } from "lucide-react";
-import router from "next/router";
+import {useRouter} from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
+
+
 
 const formSchema = z
   .object({
@@ -44,6 +46,7 @@ const formSchema = z
   });
 
 export const RegisterPage = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -95,7 +98,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row h-scren-auto">
       {/* Lado izquierdo: cuadro negro */}
       <div className="md:w-1/2 w-full bg-black text-white flex flex-col justify-center items-center p-10">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
@@ -331,6 +334,7 @@ export const RegisterPage = () => {
         {success && (
           <div style={{ marginTop: 16, color: "#16a34a", textAlign: "center" }}>
             ¡Registro exitoso! Ahora puedes iniciar sesión.
+            
           </div>
         )}
       </div>

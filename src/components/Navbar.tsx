@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { MenuIcon, UserIcon, XIcon } from "lucide-react";
 import { Button } from "./ui/button";
+import { Product } from '../interfaces/Product';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,7 +16,11 @@ export const Navbar = () => {
   return (
     <nav className="bg-black text-white">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
-        <div className="font-bold text-2xl">IDWM</div>
+        <div className="font-bold text-2xl">E-commerce
+            <div className="text-white text-sm "> de BLACKCAT</div>
+        </div>
+
+
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 font-medium items-center">
@@ -46,12 +51,12 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col items-center bg-blue-950 text-white space-y-4 py-4">
+        <div className="md:hidden flex flex-col items-center bg-gray-950 text-white space-y-4 py-4">
           <Link href="/" onClick={toggleMenu}>
-            Home
+            Inicio
           </Link>
           <Link href="/about" onClick={toggleMenu}>
-            About
+            Productos
           </Link>
           <Link
             href="/login"
