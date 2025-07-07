@@ -19,24 +19,22 @@ export const decodeJWT = (token: string) => {
 };
 
 export const getUserFromToken = (token: string): User | null => {
-  try{
+  try {
     const payload = decodeJWT(token);
-    if(!payload){
-        console.warn("Token invalido")
-        return null;
+    if (!payload) {
+      console.warn("Token invalido");
+      return null;
     }
     const user: User = {
-        firtsName: payload.firtsName || '',
-        lastName: payload.lastName || '',
-        email: payload.email || '',
-        role: payload.role || '',
-        token,
-    }
+      firtsName: payload.firtsName || "",
+      lastName: payload.lastName || "",
+      email: payload.email || "",
+      role: payload.role || "",
+      token,
+    };
     return user;
-        
-  } catch (error){
+  } catch (error) {
     console.error("Error al obtener el usuario del token:", error);
     return null;
-
   }
 };

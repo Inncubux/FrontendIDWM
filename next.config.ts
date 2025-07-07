@@ -17,8 +17,8 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "cdn.pixabay.com",
       "cdn.shopify.com",
-    ]
-  }
+    ],
+  },
 };
 
 export default nextConfig;

@@ -13,12 +13,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeftIcon } from "lucide-react";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
-
-
 
 const formSchema = z
   .object({
@@ -334,7 +332,6 @@ export const RegisterPage = () => {
         {success && (
           <div style={{ marginTop: 16, color: "#16a34a", textAlign: "center" }}>
             ¡Registro exitoso! Ahora puedes iniciar sesión.
-            
           </div>
         )}
       </div>

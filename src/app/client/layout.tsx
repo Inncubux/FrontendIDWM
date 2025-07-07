@@ -1,36 +1,36 @@
-'use client';
+"use client";
 import { decodeJWT } from "@/helpers/decodeJWT";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+export default function ClientLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { user, status } = useAuth();
+  const router = useRouter();
 
-export default function ClientLayout({children}: {children: React.ReactNode}) {
-    const{user, status} = useAuth();
-    const router = useRouter();
-    
-    useEffect(() =>{
+  useEffect(() => {
+    if (!user?.token) {
+      router.replace("/login");
+      return;
+    }
 
-        if(!user?.token){
-            router.replace('/login');
-            return;
-        }
+    const payload = decodeJWT(user.token);
+    if (!payload || payload.role !== "user") {
+      console.error("Token invalido");
+      router.replace("/");
+      return;
+    }
+  }, [user, status, router]);
 
-        const payload = decodeJWT(user.token);
-        if(!payload || payload.role !== 'user'){
-            console.error("Token invalido");
-            router.replace('/');
-            return;}
-    
-    }, [user, status, router]);
+  if (status === "checking" || !user) return <div>Cargando...</div>;
 
-    if (status === 'checking' || !user) return <div>Cargando...</div>
-
-    return (
-        <html lang="en">
-            <body>
-                {children}
-            </body>
-        </html>
-    )
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
 }

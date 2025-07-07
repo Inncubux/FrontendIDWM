@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { ApiBackend } from "@/clients/axios";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ import { ResponseAPI } from "@/interfaces/ResponseAPI";
 import { User } from "@/interfaces/User";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeftIcon } from "lucide-react";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import z from "zod";
@@ -78,20 +78,17 @@ export const LoginPage = () => {
         role: payload.role,
       };
       auth(user_);
-      if(payload.role === "Admin"){
+      if (payload.role === "Admin") {
         router.push("/admin");
-      } else if(payload.role === "User"){
+      } else if (payload.role === "User") {
         router.push("/client");
       }
-
 
       console.log("Usuario autenticado:", user);
       console.log("Respuesta del servidor:", data.data);
     } catch (error: any) {
       let errorMessage =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Error desconocido";
+        error?.response?.data?.message || error?.message || "Error desconocido";
       console.error("Error enviando el formulario:", errorMessage);
       setErrors(errorMessage);
       setErrorBool(true);

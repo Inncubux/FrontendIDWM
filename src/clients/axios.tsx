@@ -23,7 +23,7 @@ ApiBackend.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 export { ApiBackend };

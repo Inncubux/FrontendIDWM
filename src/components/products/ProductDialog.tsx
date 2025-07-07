@@ -34,16 +34,16 @@ export const ProductDialog = ({
   const decrease = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
-      const {user} = useAuth();
-      const [showDialog, setShowDialog] = useState(false);
-      const handleAddToCart = (e: React.MouseEvent) => {
-          e.stopPropagation();
-          if (!user) {
-              setShowDialog(true);
-              return;
-          }
-        //  addToCart(product.id, 1); // Assuming addToCart is a function that takes product ID and quantity
-      }
+  const { user } = useAuth();
+  const [showDialog, setShowDialog] = useState(false);
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!user) {
+      setShowDialog(true);
+      return;
+    }
+    //  addToCart(product.id, 1); // Assuming addToCart is a function that takes product ID and quantity
+  };
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -101,7 +101,10 @@ export const ProductDialog = ({
               >
                 Añadir al carrito
               </button>
-            <LoginDialog open={showDialog} onClose={() => setShowDialog(false)} />
+              <LoginDialog
+                open={showDialog}
+                onClose={() => setShowDialog(false)}
+              />
             </div>
           </div>
         </div>
