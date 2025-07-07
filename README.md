@@ -23,6 +23,7 @@ Email: axel.mondaca@alumnos.ucn.cl
 
    ```bash
    npm install
+   npm install @radix-ui/react-dialog
    ```
 
 3. **Configura las variables de entorno:**

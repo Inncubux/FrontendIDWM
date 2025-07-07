@@ -19,13 +19,13 @@ export const AdminPage = () => {
                 </button>
                 <button
                     className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded transition w-full"
-                    onClick={() => router.push("/admin/users")}
+                    onClick={() => router.push("/404")}
                 >
                     Gestión de usuarios
                 </button>
                 <button
                     className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded transition w-full"
-                    onClick={() => router.push("/admin/orders")}
+                    onClick={() => router.push("/404")}
                 >
                     Historial de órdenes
                 </button>
