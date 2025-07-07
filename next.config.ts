@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
       },
     ],
+    domains: [
+      "res.cloudinary.com",
+      "images.unsplash.com",
+      "cdn.pixabay.com",
+      "cdn.shopify.com",
+    ],
   },
 };
 

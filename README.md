@@ -26,7 +26,6 @@ Email: axel.mondaca@alumnos.ucn.cl
    ```
 
 3. **Configura las variables de entorno:**
-
    - Crea un archivo `.env` en la raíz del proyecto si tu frontend necesita variables (por ejemplo, para la URL base de la API).
    - Ejemplo:
 

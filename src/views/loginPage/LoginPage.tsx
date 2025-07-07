@@ -13,9 +13,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AuthContext } from "@/contexts/auth/AuthContext";
+import { decodeJWT } from "@/helpers/decodeJWT";
 import { ResponseAPI } from "@/interfaces/ResponseAPI";
 import { User } from "@/interfaces/User";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeftIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import z from "zod";
@@ -43,6 +46,7 @@ export const LoginPage = () => {
       password: "",
     },
   });
+  const router = useRouter();
   const [errors, setErrors] = useState<string | null>(null);
   const [errorBool, setErrorBool] = useState<boolean>(false);
   const { auth, user } = useContext(AuthContext);
@@ -59,17 +63,32 @@ export const LoginPage = () => {
       setErrors(null);
       setErrorBool(false);
       const data_ = data.data;
+      const payload = decodeJWT(data_.token);
+      if (!payload) {
+        console.error("Error al decodificar el token");
+        setErrors("Error al decodificar el token");
+        setErrorBool(true);
+        return;
+      }
       const user_: User = {
         email: data_.email,
         firtsName: data_.firtsName,
         lastName: data_.lastName,
         token: data_.token,
+        role: payload.role,
       };
       auth(user_);
+      if (payload.role === "Admin") {
+        router.push("/admin");
+      } else if (payload.role === "User") {
+        router.push("/client");
+      }
+
       console.log("Usuario autenticado:", user);
       console.log("Respuesta del servidor:", data.data);
     } catch (error: any) {
-      let errorMessage = error.response.data.message;
+      let errorMessage =
+        error?.response?.data?.message || error?.message || "Error desconocido";
       console.error("Error enviando el formulario:", errorMessage);
       setErrors(errorMessage);
       setErrorBool(true);
@@ -85,6 +104,15 @@ export const LoginPage = () => {
         <p className="text-lg md:text-xl text-center text-gray-300">
           de BLACKCAT
         </p>
+
+        <Button
+          variant="outline"
+          className="mt-4 text-black"
+          onClick={() => router.back()}
+        >
+          <ArrowLeftIcon />
+          Volver
+        </Button>
       </div>
 
       {/* Lado derecho: formulario */}
